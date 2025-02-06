@@ -29,8 +29,11 @@ balls-own [
 
 to setup
   clear-all
+  setup-court
   create-players 10
   create-balls 1
+  reset-ticks
+end
 
 to create-players [num-players]
   create-players num-players [
@@ -146,20 +149,17 @@ to draw-three-point-line [basket-y]
   ]
 end
 
-to draw-three-point-arc [x y]
-  let three-point-radius 12  ; ~23'9"
-  ask patches [
-    ; Only draw if we're:
-    ; 1. The right distance from the basket
-    ; 2. Within the court width
-    ; 3. Not past the straight line portions
-    if (round(distancexy x y) = three-point-radius) and
-       (abs pxcor < 22) and
-       (abs(pycor - y) < three-point-radius)
-    [
-      set pcolor white
-    ]
+to create-balls [num-balls]
+  create-balls num-balls [
+    ; Parameters
+    set speed 10
+    set shape "circle"
+    set color orange
+    set size 0.8
+    set holder nobody
+    setxy 10 10
   ]
+
 end
 
 to go
