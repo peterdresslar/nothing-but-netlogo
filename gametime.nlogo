@@ -161,3 +161,7 @@ to draw-three-point-arc [x y]
     ]
   ]
 end
+
+to go
+  tick
+end
